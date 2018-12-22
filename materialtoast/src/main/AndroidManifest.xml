@@ -1,0 +1,10 @@
+<!--
+  ~ MaterialToastSample - AndroidManifest.xml
+  ~ Created by Marcos Calvo García on 21/12/18 18:24.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~
+  ~ Last modified 21/12/18 18:24.
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marcoscg.materialtoast" />

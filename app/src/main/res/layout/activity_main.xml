@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ MaterialToastSample - activity_main.xml
+  ~ Created by Marcos Calvo García on 21/12/18 18:23.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~
+  ~ Last modified 21/12/18 18:23.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default toast"
+        android:onClick="toastDef" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Material toast"
+        android:onClick="toastMat" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Colored material toast"
+        android:onClick="toastMatCol" />
+
+</LinearLayout>

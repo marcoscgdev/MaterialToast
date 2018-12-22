@@ -1,0 +1,11 @@
+<!--
+  ~ MaterialToastSample - strings.xml
+  ~ Created by Marcos Calvo García on 21/12/18 18:24.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~
+  ~ Last modified 21/12/18 18:24.
+  -->
+
+<resources>
+    <string name="app_name">Material Toast</string>
+</resources>

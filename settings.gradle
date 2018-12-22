@@ -1,0 +1,9 @@
+/*
+ * MaterialToastSample - settings.gradle
+ * Created by Marcos Calvo García on 21/12/18 18:24.
+ * Copyright (c) 2018. All rights reserved.
+ *
+ * Last modified 21/12/18 18:24.
+ */
+
+include ':app', ':materialtoast'
