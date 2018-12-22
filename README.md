@@ -48,6 +48,12 @@ Also with custom icon
 MaterialToast.makeText(this, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).show();
 ```
 
+And also with custom background color (text will be automatically colored based on background color)
+
+```java
+MaterialToast.makeText(this, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).setBackgroundColor(Color.RED).show();
+```
+
  - Complete version
  
  ```java
