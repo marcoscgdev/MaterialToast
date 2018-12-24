@@ -9,7 +9,7 @@ You can download the **sample apk** [here](https://github.com/marcoscgdev/Materi
 
 ## Releases:
 
-#### Current release: 1.0.0.
+#### Current release: 1.0.1.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/MaterialToast/releases).
 
@@ -33,7 +33,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:MaterialToast:1.0.0'
+implementation 'com.github.marcoscgdev:MaterialToast:1.0.1'
 ```
 
 ### Creating a Toast
