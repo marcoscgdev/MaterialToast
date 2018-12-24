@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ MaterialToastSample - dimens.xml
+  ~ Created by Marcos Calvo García on 23/12/18 18:00.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~
+  ~ Last modified 23/12/18 18:00.
+  -->
+
+<resources>
+    <dimen name="mt_text_size">15sp</dimen>
+</resources>
