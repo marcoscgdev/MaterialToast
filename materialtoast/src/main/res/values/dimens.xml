@@ -9,4 +9,5 @@
 
 <resources>
     <dimen name="mt_text_size">16sp</dimen>
+    <dimen name="mt_bottom_margin">48dp</dimen>
 </resources>

@@ -74,7 +74,7 @@ public class MaterialToast {
         final PopupWindow toast = getToast(activity, icon);
 
         if (toast != null && activity.getWindow() != null) {
-            toast.showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, 100);
+            toast.showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, activity.getResources().getDimensionPixelSize(R.dimen.mt_bottom_margin));
         }
 
         new Handler().postDelayed(new Runnable() {
