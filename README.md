@@ -3,13 +3,13 @@ A fully and highly customizable material designed Toast for Android.
 
 <img src="https://raw.githubusercontent.com/marcoscgdev/MaterialToast/master/device-2018-12-22-164932.png" width="350">
 
-You can download the **sample apk** [here](https://github.com/marcoscgdev/MaterialToast/releases/download/1.0.1/app-debug.apk).
+You can download the **sample apk** [here](https://github.com/marcoscgdev/MaterialToast/releases/download/1.0.2/app-debug.apk).
 
 ---
 
 ## Releases:
 
-#### Current release: 1.0.1.
+#### Current release: 1.0.2.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/MaterialToast/releases).
 
@@ -33,7 +33,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:MaterialToast:1.0.1'
+implementation 'com.github.marcoscgdev:MaterialToast:1.0.2'
 ```
 
 ### Creating a Toast
@@ -41,25 +41,31 @@ implementation 'com.github.marcoscgdev:MaterialToast:1.0.1'
  - Native version
 
 ```java
-MaterialToast.makeText(this, "Hello, I'm a material toast!", Toast.LENGTH_SHORT).show();
+MaterialToast.makeText(activity, "Hello, I'm a material toast!", Toast.LENGTH_SHORT).show();
 ```
 
 Also with custom icon
 
 ```java
-MaterialToast.makeText(this, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).show();
+MaterialToast.makeText(activity, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).show();
 ```
 
 And also with custom background color (text will be automatically colored based on background color)
 
 ```java
-MaterialToast.makeText(this, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).setBackgroundColor(Color.RED).show();
+MaterialToast.makeText(activity, "Hello, I'm a material toast!", R.mipmap.ic_launcher, Toast.LENGTH_SHORT).setBackgroundColor(Color.RED).show();
+```
+
+**NEW!** With custom duration (in millis):
+
+```java
+MaterialToast.makeText(activity, "Hello, I'm a material toast!", R.mipmap.ic_launcher, 4000).setBackgroundColor(Color.RED).show();
 ```
 
  - Complete version
  
  ```java
-new MaterialToast(this)
+new MaterialToast(activity)
         .setMessage("Hello, I'm a material toast!")
         .setIcon(R.mipmap.ic_launcher)
         .setDuration(Toast.LENGTH_SHORT)
