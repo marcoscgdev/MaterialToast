@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ MaterialToastSample - styles.xml
+  ~ Created by Marcos Calvo García on 3/12/20 19:42.
+  ~ Copyright (c) 2020. All rights reserved.
+  ~
+  ~ Last modified 3/12/20 19:42.
+  -->
+
+<resources>
+
+    <style name="MaterialToastAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>

@@ -8,29 +8,35 @@
 
 package com.marcoscg.materialtoast;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
+import androidx.core.graphics.ColorUtils;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
+
+import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 public class MaterialToast {
 
-    private Context context;
+    private Activity activity;
     private String message;
     private Drawable icon;
     private int duration = Toast.LENGTH_SHORT;
 
     private static int bgColor = Color.WHITE;
 
-    public MaterialToast(Context context) {
-        this.context = context;
+    public MaterialToast(Activity activity) {
+        this.activity = activity;
     }
 
     public MaterialToast setMessage(String message) {
@@ -39,7 +45,7 @@ public class MaterialToast {
     }
 
     public MaterialToast setMessage(int messageRes) {
-        setMessage(context.getResources().getString(messageRes));
+        setMessage(activity.getResources().getString(messageRes));
         return this;
     }
 
@@ -49,7 +55,7 @@ public class MaterialToast {
     }
 
     public MaterialToast setIcon(int iconRes) {
-        setIcon(context.getResources().getDrawable(iconRes));
+        setIcon(activity.getResources().getDrawable(iconRes));
         return this;
     }
 
@@ -65,45 +71,54 @@ public class MaterialToast {
     }
 
     public void show() {
-        Toast toast = getToast(context, icon);
-        toast.show();
+        final PopupWindow toast = getToast(activity, icon);
+
+        if (toast != null && activity.getWindow() != null) {
+            toast.showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, 100);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (toast != null && activity != null && !activity.isFinishing())
+                    toast.dismiss();
+            }
+        }, getRealDuration(duration));
     }
 
-    public static MaterialToast makeText(Context context, String message, Drawable icon, int duration) {
-        return new MaterialToast(context)
+    public static MaterialToast makeText(Activity activity, String message, Drawable icon, int duration) {
+        return new MaterialToast(activity)
                 .setMessage(message)
                 .setIcon(icon)
                 .setBackgroundColor(Color.WHITE)
                 .setDuration(duration);
     }
 
-    public static MaterialToast makeText(Context context, String message, int duration) {
-        return makeText(context, message, null, duration);
+    public static MaterialToast makeText(Activity activity, String message, int duration) {
+        return makeText(activity, message, null, duration);
     }
 
-    public static MaterialToast makeText(Context context, int messageId, int duration) {
-        return makeText(context, context.getResources().getString(messageId), null, duration);
+    public static MaterialToast makeText(Activity activity, int messageId, int duration) {
+        return makeText(activity, activity.getResources().getString(messageId), null, duration);
     }
 
-    public static MaterialToast makeText(Context context, int messageId, Drawable icon, int duration) {
-        return makeText(context, context.getResources().getString(messageId), icon, duration);
+    public static MaterialToast makeText(Activity activity, int messageId, Drawable icon, int duration) {
+        return makeText(activity, activity.getResources().getString(messageId), icon, duration);
     }
 
-    public static MaterialToast makeText(Context context, String message, int iconId, int duration) {
-        return makeText(context, message, context.getResources().getDrawable(iconId), duration);
+    public static MaterialToast makeText(Activity activity, String message, int iconId, int duration) {
+        return makeText(activity, message, activity.getResources().getDrawable(iconId), duration);
     }
 
-    public static MaterialToast makeText(Context context, int messageId, int iconId, int duration) {
-        return makeText(context, context.getResources().getString(messageId),
-                context.getResources().getDrawable(iconId), duration);
+    public static MaterialToast makeText(Activity activity, int messageId, int iconId, int duration) {
+        return makeText(activity, activity.getResources().getString(messageId),
+                activity.getResources().getDrawable(iconId), duration);
     }
 
-    private Toast getToast(Context context, Drawable icon) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    private PopupWindow getToast(Activity activity, Drawable icon) {
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (inflater == null)
             return null;
-
-        Toast toast = new Toast(context);
 
         View view = inflater.inflate(R.layout.mt_main_layout, null);
         CardView cardView = view.findViewById(R.id.card_view);
@@ -116,7 +131,11 @@ public class MaterialToast {
         if (isColorDark(bgColor))
             textView.setTextColor(Color.WHITE);
 
-        toast.setView(view);
+        PopupWindow popupWindow = new PopupWindow(view,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        popupWindow.setAnimationStyle(R.style.MaterialToastAnimation);
 
         if (icon != null) {
             AppCompatImageView iconIV = view.findViewById(R.id.icon);
@@ -124,12 +143,21 @@ public class MaterialToast {
             iconIV.setImageDrawable(icon);
         }
 
-        toast.setDuration(duration);
-
-        return toast;
+        return popupWindow;
     }
 
     private static boolean isColorDark(int color) {
         return ColorUtils.calculateLuminance(color) < 0.5;
+    }
+
+    private static int getRealDuration(int duration) {
+        switch (duration) {
+            case Toast.LENGTH_SHORT:
+                return 2000;
+            case Toast.LENGTH_LONG:
+                return 3500;
+            default:
+                return duration;
+        }
     }
 }
