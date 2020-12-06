@@ -10,6 +10,7 @@ package com.marcoscg.materialtoast
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Handler
@@ -68,10 +69,32 @@ class MaterialToast(private val activity: Activity?) {
         val toast = getToast(activity, icon)
 
         toast?.let {
-            if (view != null) {
-                toast.showAsDropDown(view)
-            } else if (activity?.window != null) {
-                toast.showAtLocation(activity.window.decorView, Gravity.BOTTOM, 0, activity.resources.getDimensionPixelSize(R.dimen.mt_bottom_margin))
+            if (activity?.window != null) {
+                if (view != null) {
+                    val rect = Rect()
+                    val window = activity.window
+                    val viewLocation = IntArray(2)
+                    val windowMetricsSize = Utils.getWindowMetricsSize(activity)
+                    val widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(windowMetricsSize.x, View.MeasureSpec.UNSPECIFIED)
+                    val heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(windowMetricsSize.y, View.MeasureSpec.UNSPECIFIED)
+
+                    window?.decorView?.getWindowVisibleDisplayFrame(rect)
+                    view.getLocationInWindow(viewLocation)
+
+                    val viewLeft = viewLocation[0] - rect.left
+                    val viewTop = viewLocation[1] - rect.top
+
+                    it.contentView.measure(widthMeasureSpec, heightMeasureSpec)
+
+                    val toastWidth = it.contentView.measuredWidth
+                    val toastHeight = it.contentView.measuredHeight
+                    val toastX = viewLeft + (view.width - toastWidth) / 2
+                    val toastY = viewTop + (view.height - toastHeight) / 2
+
+                    toast.showAtLocation(view, Gravity.START or Gravity.TOP, toastX, toastY)
+                } else {
+                    toast.showAtLocation(activity.window.decorView, Gravity.BOTTOM, 0, activity.resources.getDimension(R.dimen.mt_bottom_margin).toInt())
+                }
             }
         }
 
