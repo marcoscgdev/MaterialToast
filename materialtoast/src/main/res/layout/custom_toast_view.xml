@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ MaterialToastSample - custom_toast_view.xml
+  ~ Created by Marcos Calvo García on 8/12/20 15:55.
+  ~ Copyright (c) 2020. All rights reserved.
+  ~
+  ~ Last modified 8/12/20 15:55.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textColor="@android:color/white"
+        android:text="Toast from a custom view!"/>
+
+</LinearLayout>

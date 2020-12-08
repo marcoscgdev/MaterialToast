@@ -29,6 +29,17 @@ class MainActivity : AppCompatActivity() {
                 .setIcon(R.mipmap.ic_launcher)
                 .setDuration(Toast.LENGTH_SHORT)
                 .setBackgroundColor(Color.RED)
-                .show(v)
+                .show()
+    }
+
+    fun toastMatView(v: View?) {
+        MaterialToast.makeText(this, "Hello, I'm a material toast!", Toast.LENGTH_SHORT).show(v)
+    }
+
+    fun toastMatCustom(v: View?) {
+        MaterialToast(this)
+                .setCustomView(View.inflate(this, R.layout.custom_toast_view, null))
+                .setDuration(Toast.LENGTH_SHORT)
+                .show()
     }
 }

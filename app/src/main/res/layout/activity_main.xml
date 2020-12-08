@@ -19,18 +19,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Default toast"
+        android:layout_margin="4dp"
         android:onClick="toastDef" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Material toast"
+        android:layout_margin="4dp"
         android:onClick="toastMat" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Colored material toast"
+        android:layout_margin="4dp"
         android:onClick="toastMatCol" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Material toast in view"
+        android:layout_margin="4dp"
+        android:onClick="toastMatView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom view material toast"
+        android:layout_margin="4dp"
+        android:onClick="toastMatCustom" />
 
 </LinearLayout>

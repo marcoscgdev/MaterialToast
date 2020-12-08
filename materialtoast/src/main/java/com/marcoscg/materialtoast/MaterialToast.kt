@@ -31,6 +31,7 @@ class MaterialToast(private val activity: Activity?) {
     private var icon: Drawable? = null
     private var bgColor = Color.WHITE
     private var duration = Toast.LENGTH_SHORT
+    private var customView: View? = null
 
     fun setMessage(message: String?): MaterialToast {
         this.message = message
@@ -59,6 +60,11 @@ class MaterialToast(private val activity: Activity?) {
 
     fun setBackgroundColor(bgColor: Int): MaterialToast {
         this.bgColor = bgColor
+        return this
+    }
+
+    fun setCustomView(customView: View?): MaterialToast {
+        this.customView = customView
         return this
     }
 
@@ -115,7 +121,7 @@ class MaterialToast(private val activity: Activity?) {
         if (message != null) textView.text = message
         if (isColorDark(bgColor)) textView.setTextColor(Color.WHITE)
 
-        val popupWindow = PopupWindow(view,
+        val popupWindow = PopupWindow(if (customView != null) customView else view,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
 
