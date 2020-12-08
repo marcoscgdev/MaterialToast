@@ -29,6 +29,7 @@ class MaterialToast(private val activity: Activity?) {
 
     private var message: String? = null
     private var icon: Drawable? = null
+    private var bgColor = Color.WHITE
     private var duration = Toast.LENGTH_SHORT
 
     fun setMessage(message: String?): MaterialToast {
@@ -57,7 +58,7 @@ class MaterialToast(private val activity: Activity?) {
     }
 
     fun setBackgroundColor(bgColor: Int): MaterialToast {
-        Companion.bgColor = bgColor
+        this.bgColor = bgColor
         return this
     }
 
@@ -130,7 +131,6 @@ class MaterialToast(private val activity: Activity?) {
     }
 
     companion object {
-        private var bgColor = Color.WHITE
         fun makeText(activity: Activity?, message: String?, icon: Drawable?, duration: Int): MaterialToast {
             return MaterialToast(activity)
                     .setMessage(message)
