@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toastMatView(v: View?) {
-        MaterialToast.makeText(this, "Hello, I'm a material toast!", Toast.LENGTH_SHORT).show(v)
+        // offsetX and offsetY are optional
+        MaterialToast.makeText(this, "Hello, I'm a material toast!", Toast.LENGTH_SHORT).show(v, offsetY = -60)
     }
 
     fun toastMatCustom(v: View?) {

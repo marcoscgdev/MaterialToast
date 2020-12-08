@@ -72,7 +72,7 @@ class MaterialToast(private val activity: Activity?) {
         show(null)
     }
 
-    fun show(view: View?) {
+    fun show(view: View?, offsetX: Int = 0, offsetY: Int = 0) {
         val toast = getToast(activity, icon)
 
         toast?.let {
@@ -95,8 +95,8 @@ class MaterialToast(private val activity: Activity?) {
 
                     val toastWidth = it.contentView.measuredWidth
                     val toastHeight = it.contentView.measuredHeight
-                    val toastX = viewLeft + (view.width - toastWidth) / 2
-                    val toastY = viewTop + (view.height - toastHeight) / 2
+                    val toastX = viewLeft + (view.width - toastWidth) / 2 + offsetX
+                    val toastY = viewTop + (view.height - toastHeight) / 2 + offsetY
 
                     toast.showAtLocation(view, Gravity.START or Gravity.TOP, toastX, toastY)
                 } else {
