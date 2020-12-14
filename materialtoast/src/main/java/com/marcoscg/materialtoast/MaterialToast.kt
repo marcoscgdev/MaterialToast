@@ -32,6 +32,7 @@ class MaterialToast(private val activity: Activity?) {
     private var bgColor = Color.WHITE
     private var duration = Toast.LENGTH_SHORT
     private var customView: View? = null
+    private var typeface: Typeface? = null
 
     fun setMessage(message: String?): MaterialToast {
         this.message = message
@@ -60,6 +61,11 @@ class MaterialToast(private val activity: Activity?) {
 
     fun setBackgroundColor(bgColor: Int): MaterialToast {
         this.bgColor = bgColor
+        return this
+    }
+    
+    fun setTypeface(typeface: Typeface?): MaterialToast {
+        this.typeface = typeface
         return this
     }
 
@@ -116,7 +122,7 @@ class MaterialToast(private val activity: Activity?) {
         val cardView: CardView = view.findViewById(R.id.card_view)
         cardView.setCardBackgroundColor(bgColor)
         val textView: AppCompatTextView = view.findViewById(android.R.id.message)
-        textView.typeface = Typeface.create("sans-serif-condensed", Typeface.NORMAL)
+        textView.typeface = if (typeface != null) typeface else Typeface.create("sans-serif-condensed", Typeface.NORMAL)
 
         if (message != null) textView.text = message
         if (isColorDark(bgColor)) textView.setTextColor(Color.WHITE)
